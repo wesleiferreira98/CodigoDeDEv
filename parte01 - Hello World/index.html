@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <title>Hello World</title>
+    <link rel="shortcut icon" href="icone-da-guia.ico" type="image/x-icon">
     <style>
         body {
             background-color: #121212;
@@ -35,14 +36,71 @@
             cursor: pointer;
             color: #fff;
         }
+
+        
+        .hidden {
+            display: none;
+        }
+
+        input {
+            padding: 5px;
+
+            border-radius: 5px;
+            border: none;
+
+            transition: all ease-in-out 200ms;
+        }
+        input:focus {
+            box-shadow: 0px 0px 10px #00c000;
+
+            outline: none;
+        }
+        
     </style>
 </head>
 <body>
-    <div>
+
+    <div id="div1">
         <h1>Hello World!</h1>
         <p>Este é meu primeiro site com HTML e CSS!</p>
 
-        <button>LogIn</button>
+        <button id="login-btn">LogIn</button>
     </div>
+
+    <div id="div2" class="hidden">
+        <h2>Olá, bem vindo(a)!</h2>
+
+        <p>Qual é o seu nome?</p>
+        <input title="username" id="input-nome" type="text">
+
+        <button type="submit" id="botao">Enviar</button>
+    </div>
+    
+    <script>
+
+        let logInBTN = document.getElementById("login-btn")
+        let div1 = document.getElementById("div1")
+        let div2 = document.getElementById("div2")
+
+        logInBTN.addEventListener('click', function(e) {
+            div1.classList.add("hidden")
+            div2.classList.remove("hidden")
+        })
+        
+        let input = document.getElementById("input-nome")
+        let botaoEnviar = document.getElementById("botao")
+
+        botaoEnviar.addEventListener('click', function(e) {
+            let nome = input.value
+
+            if (nome == "") {
+                alert("Por favor, digite seu some!")
+
+            } else {
+                alert("Olá, " + nome + "!")
+            }
+        })
+
+    </script>
 </body>
 </html>
