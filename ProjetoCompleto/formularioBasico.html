@@ -116,10 +116,12 @@
         document.getElementById("contactForm").addEventListener("submit", function (event) {
             const form = event.target;
             if (!form.checkValidity()) {
+                alert("Preencha todos os campos corretamente!")
                 event.preventDefault();
                 event.stopPropagation();
+            } else {
+                alert("Formulário enviado com sucesso!");
             }
-            alert("Formulário enviado com sucesso!");
         });
     </script>
 </body>
