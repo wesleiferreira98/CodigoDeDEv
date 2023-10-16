@@ -85,7 +85,7 @@
         <p class="typewriter">Preencha para entrar em contato conosco!</p>
         <br>
         
-        <form id="contactForm" method="post" action="#" novalidate>
+        <form id="contactForm" method="get" action="#" novalidate>
             <div class="mb-3">
                 <label for="name" class="form-label">Nome</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -115,12 +115,14 @@
         // JavaScript para validação de formulário básico
         document.getElementById("contactForm").addEventListener("submit", function (event) {
             const form = event.target;
+
             if (!form.checkValidity()) {
                 alert("Preencha todos os campos corretamente!")
                 event.preventDefault();
                 event.stopPropagation();
             } else {
                 alert("Formulário enviado com sucesso!");
+                window.location.href = "index.html";
             }
         });
     </script>
