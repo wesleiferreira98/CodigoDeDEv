@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Básica</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-       /* Define margens esquerda e direita para os botões dentro da classe .btn-group */
-        /* Define margens esquerda e direita para os botões dentro da classe .btn-group */
-     .btn-group button {
-        margin-left: 0.5rem; /* Reduz a margem esquerda para agrupar os botões */
-        margin-right: 0.5rem; /* Adiciona uma margem à direita para manter a distância uniforme */
-        padding: 10px; /* Adiciona espaço interno para um tamanho visual mais adequado */
-    }
+        .btn-group button {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            padding: 10px;
+        }
         body {
             background-color: #121212;
             color: #00c000;
@@ -22,7 +20,7 @@
             width: 400px; 
             padding: 10px;
             border-radius: 5px;
-             margin: 10px auto; 
+                margin: 10px auto; 
             border: none;
             transition: all ease-in-out 200ms;
         }
@@ -34,28 +32,29 @@
             cursor: pointer;
             color: #fff;
         }
-        .divTop{
-            width: 250px;
-        }
 
     </style>
 </head>
 <body>
     <div class="container mt-5 text-center"> <!-- Adicionando "text-center" para centralizar o título essa e a div principal-->
         <h1>Calculadora Básica</h1>
-          <!-- Esta div cria uma linha (row) que serve como um recipiente para as colunas (col) dentro dela.
+
+          <!-- Esta div abaixo cria uma linha (row) que serve como um recipiente para as colunas (col) dentro dela.
                   A classe "mt-3" adiciona margem superior para dar espaço entre esta linha e o conteúdo acima dela. -->
           <!-- As colunas com os botões da calculadora são colocadas dentro desta linha para organização e alinhamento. -->
         <div class="row mt-3">
-            <!-- Esta div cria uma coluna que ocupa 4 unidades de largura em dispositivos de tamanho médio (col-md-4) 
+
+            <!-- Esta outra div abaixo cria uma coluna que ocupa 4 unidades de largura em dispositivos de tamanho médio (col-md-4) 
                  e adiciona um deslocamento de 4 unidades à esquerda, centralizando horizontalmente o conteúdo na grade (offset-md-4). -->
             <!-- O conteúdo da calculadora é colocado dentro desta coluna centralizada. -->
             <div class="col-md-4 offset-md-4 ">
-                 <!-- Este é um campo de entrada de texto (input) do tipo "text" com o ID "display".
+
+                 <!-- Este logo abaixo é um campo de entrada de texto (input) do tipo "text" com o ID "display".
                     A classe "form-control" aplica estilos de controle de formulário do Bootstrap, como largura e margens.
                     A classe "mb-2" adiciona margem inferior ao elemento para separá-lo dos botões da calculadora.
                     A propriedade "readonly" torna este campo de entrada somente leitura, impedindo a edição manual. -->
                 <input type="text" id="display"  readonly>
+
                 <!-- Botões para números e operadores -->
                 <div class="btn-group w-100" role="group">
                       <!-- Este div contém um grupo de botões relacionados, ocupando 100% da largura disponível.
@@ -63,7 +62,7 @@
                       O atributo "role='group'" é usado para indicar que esses botões estão agrupados como uma unidade funcional para acessibilidade. -->
 
                       <button class="btn btn-secondary mb-2" onclick="adicionarNumero('7')">7</button>
-                      <!-- Este botão possui a classe "btn btn-secondary" para estilos de botão secundário.
+                      <!-- Este botão acima possui a classe "btn btn-secondary" para estilos de botão secundário.
                           O evento "onclick" chama a função "adicionarNumero('7')" quando o botão é clicado, adicionando o número 7 ao visor da calculadora.
                           O "mb" em "mb-2" significa "margin-bottom" (margem inferior em inglês), e o número "2" especifica o tamanho da margem. 
                       -->
@@ -76,8 +75,11 @@
 
                       <button class="btn btn-danger mb-2" onclick="adicionarOperador('+')">+</button>
                       <!-- Este botão possui a classe "btn btn-danger" para estilos de botão de ação destrutiva.
-                      O evento "onclick" chama a função "adicionarOperador('+')" quando o botão é clicado, adicionando o operador de adição (+) ao visor da calculadora. -->
+                      O atributo/evento "onclick" chama a função "adicionarOperador('+')" quando o botão é clicado, adicionando o operador de adição (+) ao visor da calculadora. -->
                 </div>
+
+                <!-- O mesmo da anterior segue para as divs abaixo -->
+
                 <div class="btn-group w-100" role="group">
                     <button class="btn btn-secondary mb-2" onclick="adicionarNumero('4')">4</button>
                     <button class="btn btn-secondary mb-2" onclick="adicionarNumero('5')">5</button>
@@ -96,68 +98,82 @@
                     <button class="btn btn-success mb-2" onclick="calcularResultado()">=</button>
                     <button class="btn btn-danger mb-2" onclick="adicionarOperador('/')">/</button>
                 </div>
-            </div>
-        </div>
-    </div>
+
+            </div> <!-- Fim da coluna -->
+        </div> <!-- Fim da linha -->
+    </div> <!-- Fim da div principal -->
 
     <script>
-                 // Variável que armazena a entrada atual na calculadora
-              let entradaAtual = '';
-              let operadorInserido = false; // Variável para rastrear se um operador já foi inserido
+        let entradaAtual = ''; // Variável que armazena a entrada atual na calculadora
+        let operadorInserido = false; // Variável para rastrear se um operador já foi inserido
 
-              // Função para adicionar números ao visor
-              function adicionarNumero(numero) {
-                  if (entradaAtual === 'Erro') {
-                      // Se houver um erro anteriormente, comece com uma nova entrada
-                      entradaAtual = '';
-                  }
-                  entradaAtual += numero; // Concatena o número à entrada atual
-                  document.getElementById('display').value = entradaAtual; // Atualiza o visor com a entrada atual
-              }
+        function adicionarNumero(numero) { // Função para adicionar números ao visor
 
-              // Função para adicionar operadores ao visor
-             // Função para adicionar operadores ao visor
-                function adicionarOperador(operador) {
-                    if (entradaAtual === 'Erro') {
-                        // Se houve um erro anteriormente, comece com uma nova entrada
-                        entradaAtual = '';
-                    }
+            if (entradaAtual === 'Erro') { // Se houver um erro anteriorment:
+                entradaAtual = ''; // Irá começar uma nova entrada
+            }
 
-                                          // Verifica se o último caractere na entrada atual é um operador
-                      const ultimoCaractere = entradaAtual.slice(-1); // O método slice é usado para obter o último caractere da entradaAtual
-                      if (ultimoCaractere === '+' || ultimoCaractere === '-' || ultimoCaractere === '*' || ultimoCaractere === '/') {
-                          // Se o último caractere for um operador, remova-o antes de adicionar o novo operador
-                          entradaAtual = entradaAtual.slice(0, -1); // Remove o último caractere da entradaAtual
-                      }
+            // Caso o if acima não seja atendido, o código abaixo será executado:
+            entradaAtual += numero; // Concatena (adiciona) o número à entrada atual
+            document.getElementById('display').value = entradaAtual; // Atualiza o visor com a entrada atual (valor da variável entradaAtual) [*]
 
-                    // Adiciona o operador à entrada atual
-                    entradaAtual += operador;
-                    document.getElementById('display').value = entradaAtual; // Atualiza o visor com a entrada atual
-                    operadorInserido = true; // Marca que um operador foi inserido
-                }
+            // [*] Note que, na linha 118, o método getElementById() é usado para obter o elemento com o ID "display" (isto é, ) e, em seguida, o valor do visor é atualizado com a entrada atual
+
+        } // Fim da função
+
+        
+        function adicionarOperador(operador) { // Função para adicionar operadores ao visor
+            if (entradaAtual === 'Erro') { // Se houve um erro anteriormente, comece com uma nova entrada
+                entradaAtual = '';
+            }
+
+            // Verifica se o último caractere na entrada atual é um operador
+            const ultimoCaractere = entradaAtual.slice(-1); // [*]
+            // O método slice é usado para obter o último caractere da entradaAtual
+            // O parâmetro -1 especifica que o último caractere é o que deve ser retornado
+
+            if (ultimoCaractere === '+' || ultimoCaractere === '-' || ultimoCaractere === '*' || ultimoCaractere === '/') { 
+            // Se o último caractere for um operador
+                entradaAtual = entradaAtual.slice(0, -1); // Remove o último caractere da entradaAtual antes de adicionar o novo operador
+            }
+
+            // Adiciona o operador à entrada atual
+            entradaAtual += operador;
+            document.getElementById('display').value = entradaAtual; // Atualiza o visor com a entrada atual
+            operadorInserido = true; // Marca que um operador foi inserido
+        }
 
 
-              // Função para limpar o visor
-              function limparVisor() {
-                  entradaAtual = ''; // Limpa a entrada atual
-                  document.getElementById('display').value = ''; // Limpa o visor
-                  operadorInserido = false; // Reinicia o estado do operador
-              }
+        function limparVisor() { // Função para limpar o visor
+            entradaAtual = ''; // Limpa a entrada atual (input fica vazio)
+            document.getElementById('display').value = ''; // Limpa o visor
+            operadorInserido = false; // Reinicia o estado do operador
+        }
 
-              // Função para calcular e exibir o resultado
-              function calcularResultado() {
-                  try {
-                      entradaAtual = eval(entradaAtual); // A função eval() avalia a expressão contida em entradaAtual
-                      document.getElementById('display').value = entradaAtual; // Exibe o resultado no visor
-                      operadorInserido = false; // Reinicia o estado do operador após o cálculo
-                  } catch (erro) {
-                      entradaAtual = 'Erro'; // Marca 'Erro' na entrada atual em caso de erro
-                      document.getElementById('display').value = entradaAtual; // Exibe 'Erro' no visor
-                      operadorInserido = false; // Reinicia o estado do operador
-                  }
-              }
+
+        function calcularResultado() { // Função para calcular e exibir o resultado
+
+            try { // Tenta executar o código abaixo [*]
+                entradaAtual = eval(entradaAtual); // A função eval() avalia a expressão contida em entradaAtual
+                document.getElementById('display').value = entradaAtual; // Exibe o resultado no visor
+                operadorInserido = false; // Reinicia o estado do operador após o cálculo
+
+            } catch (erro) { // Se ocorrer um erro, o código abaixo será executado
+                entradaAtual = 'Erro'; // Marca 'Erro' na entrada atual em caso de erro
+                document.getElementById('display').value = entradaAtual; // Exibe 'Erro' no visor
+                operadorInserido = false; // Reinicia o estado do operador
+            } 
+
+            /* [*]
+             * O chamado bloco try-catch é usado para lidar com erros.
+             * O utilizamos pois, muitas vezes, alguns códigos podem gerar problemas inesperados e que fogem ao controle do próprio programador.
+             * Esses problemas são chamados de "exceções" e, quando ocorrem, o programa é interrompido e o usuário recebe uma mensagem de erro.
+             * Para evitar que isso aconteça, podemos usar o bloco try-catch para "tentar" executar um código e, caso ocorra algum erro, o bloco catch é executado e assim o erro é tratado (sendo exposto de forma mais clara ao usuário, substituído por outra funcionalidade ou até mesmo ignorado).
+            */
+        }
 
     </script>
+    
     <!-- Inclua o Bootstrap JavaScript e jQuery (opcional, para recursos interativos) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
